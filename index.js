@@ -24,10 +24,15 @@ function renderPage(elements) {
     while (elements.length > 0) {
         let element = elements.shift();
         $(".content").last().append(element);
+
+        // So it seems like this while loop is going onto infinity.
+        //  Why is that? Where is the code getting caught?
+        //  How would I diagnose?
+
         if (isOverflowing()) {
             $(".content").children().last().remove();
-            $("body").append(newPage);
-            elements.unshift(element)
+            $("#chapterContainer").append(newPage);
+            $(".content").last().append(element);
         };
     }
 }
